@@ -1,4 +1,4 @@
- target/
-   nbproject/private/
-   nbactions.xml
-   *.log
+target/
+nbproject/private/
+nbactions.xml
+*.log

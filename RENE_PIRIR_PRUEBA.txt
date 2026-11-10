@@ -1,0 +1,9 @@
+PRUEBA DE COLABORACIÓN EN GITHUB
+
+Proyecto: Sistema de Pedidos y Fidelización
+Colaborador: Rene Pirir
+Rama: Prueba
+
+Saludos Luis Este archivo se creó para verificar que puedo
+realizar commits y subir cambios al repositorio
+compartido del proyecto.

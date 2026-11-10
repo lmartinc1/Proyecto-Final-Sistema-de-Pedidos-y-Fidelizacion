@@ -1,0 +1,91 @@
+<mxfile host="app.diagrams.net">
+  <diagram id="uml_pan_puntos" name="UML">
+    <mxGraphModel dx="1571" dy="826" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="1000" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="title" parent="1" style="rounded=1;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=8;fillColor=#f5f5f5;strokeColor=#666666;fontSize=12;" value="&lt;b&gt;Diagrama de clases UML&lt;/b&gt;&lt;hr/&gt;Proyecto: Pan, Puntos y Premios — Sistema de Pedidos y Fidelización" vertex="1">
+          <mxGeometry height="55" width="620" x="470" y="20" as="geometry" />
+        </mxCell>
+        <mxCell id="cliente" parent="1" style="rounded=1;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=8;fillColor=#eaf2f8;strokeColor=#5b9bd5;fontSize=12;" value="&lt;b&gt;Cliente&lt;/b&gt;&lt;hr/&gt;- idCliente: int&lt;br/&gt;- codigo: String&lt;br/&gt;- nombre: String&lt;br/&gt;- telefono: String&lt;br/&gt;- saldoPuntos: int&lt;br/&gt;- activo: boolean&lt;br/&gt;+ getters/setters()" vertex="1">
+          <mxGeometry height="170" width="250" x="40" y="120" as="geometry" />
+        </mxCell>
+        <mxCell id="producto" parent="1" style="rounded=1;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=8;fillColor=#eaf2f8;strokeColor=#5b9bd5;fontSize=12;" value="&lt;b&gt;Producto&lt;/b&gt;&lt;hr/&gt;- idProducto: int&lt;br/&gt;- codigo: String&lt;br/&gt;- categoria: String&lt;br/&gt;- nombre: String&lt;br/&gt;- precio: BigDecimal&lt;br/&gt;- existencia: int&lt;br/&gt;- activo: boolean&lt;br/&gt;+ getters/setters()" vertex="1">
+          <mxGeometry height="190" width="250" x="40" y="360" as="geometry" />
+        </mxCell>
+        <mxCell id="menu" parent="1" style="rounded=1;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=8;fillColor=#eaf2f8;strokeColor=#5b9bd5;fontSize=12;" value="&lt;b&gt;Menu&lt;/b&gt;&lt;hr/&gt;- idMenu: int&lt;br/&gt;- codigo: String&lt;br/&gt;- nombre: String&lt;br/&gt;- precio: BigDecimal&lt;br/&gt;- sandwich: Producto&lt;br/&gt;- bebida: Producto&lt;br/&gt;- acompanamiento: Producto&lt;br/&gt;- activo: boolean" vertex="1">
+          <mxGeometry height="200" width="270" x="340" y="360" as="geometry" />
+        </mxCell>
+        <mxCell id="pedido" parent="1" style="rounded=1;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=8;fillColor=#e2f0d9;strokeColor=#70ad47;fontSize=12;" value="&lt;b&gt;Pedido&lt;/b&gt;&lt;hr/&gt;- idPedido: int&lt;br/&gt;- cliente: Cliente&lt;br/&gt;- fecha: LocalDateTime&lt;br/&gt;- estado: String&lt;br/&gt;- total: BigDecimal&lt;br/&gt;- detalles: List&amp;lt;DetallePedido&amp;gt;" vertex="1">
+          <mxGeometry height="180" width="260" x="340" y="120" as="geometry" />
+        </mxCell>
+        <mxCell id="detalle" parent="1" style="rounded=1;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=8;fillColor=#e2f0d9;strokeColor=#70ad47;fontSize=12;" value="&lt;b&gt;DetallePedido&lt;/b&gt;&lt;hr/&gt;- idDetalle: int&lt;br/&gt;- tipoItem: String&lt;br/&gt;- producto: Producto&lt;br/&gt;- menu: Menu&lt;br/&gt;- cantidad: int&lt;br/&gt;- precioUnitario: BigDecimal&lt;br/&gt;- subtotal: BigDecimal" vertex="1">
+          <mxGeometry height="210" width="280" x="650" y="120" as="geometry" />
+        </mxCell>
+        <mxCell id="metodo_pago" parent="1" style="rounded=1;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=8;fillColor=#fff2cc;strokeColor=#bf9000;fontSize=12;" value="&lt;b&gt;«abstract» MetodoPago&lt;/b&gt;&lt;hr/&gt;- idPago: int&lt;br/&gt;- pedido: Pedido&lt;br/&gt;- fecha: LocalDateTime&lt;br/&gt;- monto: BigDecimal&lt;br/&gt;- estado: String&lt;br/&gt;- referencia: String&lt;br/&gt;+ validarPago(): boolean" vertex="1">
+          <mxGeometry height="180" width="250" x="980" y="110" as="geometry" />
+        </mxCell>
+        <mxCell id="pago_efectivo" parent="1" style="rounded=1;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=8;fillColor=#fff2cc;strokeColor=#bf9000;fontSize=12;" value="&lt;b&gt;PagoEfectivo&lt;/b&gt;&lt;hr/&gt;- montoRecibido: BigDecimal&lt;br/&gt;- cambio: BigDecimal&lt;br/&gt;+ validarPago(): boolean&lt;br/&gt;+ calcularCambio(): void" vertex="1">
+          <mxGeometry height="150" width="250" x="980" y="340" as="geometry" />
+        </mxCell>
+        <mxCell id="pago_tarjeta" parent="1" style="rounded=1;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=8;fillColor=#fff2cc;strokeColor=#bf9000;fontSize=12;" value="&lt;b&gt;PagoTarjeta&lt;/b&gt;&lt;hr/&gt;+ validarPago(): boolean&lt;br/&gt;- referencia: String" vertex="1">
+          <mxGeometry height="140" width="250" x="1260" y="340" as="geometry" />
+        </mxCell>
+        <mxCell id="recompensa" parent="1" style="rounded=1;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=8;fillColor=#fce4d6;strokeColor=#c65911;fontSize=12;" value="&lt;b&gt;Recompensa&lt;/b&gt;&lt;hr/&gt;- idRecompensa: int&lt;br/&gt;- codigo: String&lt;br/&gt;- nombre: String&lt;br/&gt;- puntosRequeridos: int&lt;br/&gt;- tipoRecompensa: String&lt;br/&gt;- producto: Producto&lt;br/&gt;- menu: Menu&lt;br/&gt;- activo: boolean" vertex="1">
+          <mxGeometry height="200" width="280" x="650" y="390" as="geometry" />
+        </mxCell>
+        <mxCell id="canje" parent="1" style="rounded=1;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=8;fillColor=#fce4d6;strokeColor=#c65911;fontSize=12;" value="&lt;b&gt;Canje&lt;/b&gt;&lt;hr/&gt;- idCanje: int&lt;br/&gt;- cliente: Cliente&lt;br/&gt;- recompensa: Recompensa&lt;br/&gt;- fecha: LocalDateTime&lt;br/&gt;- puntosUtilizados: int" vertex="1">
+          <mxGeometry height="160" width="250" x="860" y="660" as="geometry" />
+        </mxCell>
+        <mxCell id="mov_puntos" parent="1" style="rounded=1;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=8;fillColor=#fce4d6;strokeColor=#c65911;fontSize=12;" value="&lt;b&gt;MovimientoPuntos&lt;/b&gt;&lt;hr/&gt;- idMovimiento: int&lt;br/&gt;- cliente: Cliente&lt;br/&gt;- fecha: LocalDateTime&lt;br/&gt;- tipo: String&lt;br/&gt;- puntos: int&lt;br/&gt;- saldoResultante: int&lt;br/&gt;- idPedido: Integer&lt;br/&gt;- idCanje: Integer" vertex="1">
+          <mxGeometry height="190" width="280" x="1110" y="570" as="geometry" />
+        </mxCell>
+        <mxCell id="mov_inv" parent="1" style="rounded=1;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=8;fillColor=#ddebf7;strokeColor=#4472c4;fontSize=12;" value="&lt;b&gt;MovimientoInventario&lt;/b&gt;&lt;hr/&gt;- idMovimiento: int&lt;br/&gt;- producto: Producto&lt;br/&gt;- fecha: LocalDateTime&lt;br/&gt;- tipo: String&lt;br/&gt;- cantidad: int&lt;br/&gt;- referencia: String" vertex="1">
+          <mxGeometry height="180" width="280" x="40" y="650" as="geometry" />
+        </mxCell>
+        <mxCell id="e1" edge="1" parent="1" source="cliente" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;" target="pedido" value="1 : N">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e2" edge="1" parent="1" source="pedido" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;" target="detalle" value="1 : N">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e3" edge="1" parent="1" source="detalle" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;" target="producto" value="0..1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e4" edge="1" parent="1" source="detalle" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;" target="menu" value="0..1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e5" edge="1" parent="1" source="menu" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;" target="producto" value="3 componentes">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e6" edge="1" parent="1" source="pedido" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;" target="metodo_pago" value="1 : 0..1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e7" edge="1" parent="1" source="cliente" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;" target="canje" value="1 : N">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e8" edge="1" parent="1" source="recompensa" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;" target="canje" value="1 : N">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e9" edge="1" parent="1" source="cliente" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;" target="mov_puntos" value="1 : N">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e10" edge="1" parent="1" source="producto" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;" target="mov_inv" value="1 : N">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e11" edge="1" parent="1" source="recompensa" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;" target="producto" value="0..1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e12" edge="1" parent="1" source="recompensa" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;" target="menu" value="0..1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="inh1" edge="1" parent="1" source="pago_efectivo" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;" target="metodo_pago" value="hereda">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="inh2" edge="1" parent="1" source="pago_tarjeta" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;" target="metodo_pago" value="hereda">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

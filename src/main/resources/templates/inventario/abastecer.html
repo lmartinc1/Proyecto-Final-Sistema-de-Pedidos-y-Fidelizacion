@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Inventario</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+
+<div class="container py-4">
+
+    <h1 class="h3">Inventario</h1>
+    <a th:href="@{/dashboard}">Volver al panel</a>
+
+    <div class="alert alert-success mt-3"
+         th:if="${ok}">
+        Inventario actualizado correctamente.
+    </div>
+
+    <div class="alert alert-danger mt-3"
+         th:if="${error != null}"
+         th:text="${error}">
+    </div>
+
+    <div class="card border-0 shadow-sm my-4">
+        <div class="card-body">
+
+            <h2 class="h5">Abastecer producto</h2>
+
+            <form method="post"
+                  th:action="@{/inventario/abastecer}"
+                  class="row g-3">
+
+                <div class="col-md-5">
+                    <label class="form-label">Producto</label>
+                    <select class="form-select"
+                            name="idProducto"
+                            required>
+                        <option th:each="producto : ${productos}"
+                                th:value="${producto.idProducto}"
+                                th:text="${producto.codigo + ' - ' + producto.nombre + ' (Existencia: ' + producto.existencia + ')'}">
+                        </option>
+                    </select>
+                </div>
+
+                <div class="col-md-3">
+                    <label class="form-label">Cantidad</label>
+                    <input class="form-control"
+                           type="number"
+                           min="1"
+                           name="cantidad"
+                           required>
+                </div>
+
+                <div class="col-md-4">
+                    <label class="form-label">Referencia</label>
+                    <input class="form-control"
+                           name="referencia"
+                           placeholder="Ej. Compra semanal">
+                </div>
+
+                <div class="col-12">
+                    <button class="btn btn-primary" type="submit">
+                        Registrar abastecimiento
+                    </button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+
+    <div class="card border-0 shadow-sm">
+        <div class="card-body">
+
+            <h2 class="h5">Historial de movimientos</h2>
+
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>Fecha</th>
+                        <th>Producto</th>
+                        <th>Tipo</th>
+                        <th>Cantidad</th>
+                        <th>Referencia</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="movimiento : ${movimientos}">
+                        <td th:text="${movimiento.fecha}"></td>
+                        <td th:text="${movimiento.producto.nombre}"></td>
+                        <td th:text="${movimiento.tipo}"></td>
+                        <td th:text="${movimiento.cantidad}"></td>
+                        <td th:text="${movimiento.referencia == null ? '' : movimiento.referencia}"></td>
+                    </tr>
+
+                    <tr th:if="${movimientos == null or movimientos.empty}">
+                        <td colspan="5" class="text-center text-muted">
+                            No hay movimientos de inventario.
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+</body>
+</html>

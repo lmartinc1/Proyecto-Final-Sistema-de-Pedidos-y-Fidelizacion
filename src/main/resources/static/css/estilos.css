@@ -1,0 +1,32 @@
+body {
+    min-height: 100vh;
+}
+
+.login-card {
+    width: 100%;
+    max-width: 430px;
+    border-radius: 16px;
+}
+
+.card {
+    border-radius: 14px;
+}
+
+.table {
+    vertical-align: middle;
+}
+
+.form-control,
+.form-select,
+.btn {
+    border-radius: 8px;
+}
+
+.navbar-brand {
+    letter-spacing: 0.2px;
+}
+
+.modulo-titulo {
+    font-weight: 700;
+    margin-bottom: 0;
+}

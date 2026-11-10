@@ -14,6 +14,7 @@ import com.umg.sistemapedidosfidelizacion.dao.ReporteDAO;
 
 import java.io.IOException;
 import java.io.OutputStream;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -65,7 +66,7 @@ public class ReportePDFServicio {
             LocalDate inicio,
             LocalDate fin,
             OutputStream salida
-    ) throws Exception {
+    ) throws SQLException, DocumentException {
 
         DateTimeFormatter formato =
                 DateTimeFormatter.ofPattern(
@@ -99,7 +100,7 @@ public class ReportePDFServicio {
 
     public void productosMasVendidos(
             OutputStream salida
-    ) throws Exception {
+    ) throws SQLException, DocumentException {
 
         crearPDF(
                 "Productos más vendidos",
@@ -120,7 +121,7 @@ public class ReportePDFServicio {
 
     public void productosBajoInventario(
             OutputStream salida
-    ) throws Exception {
+    ) throws SQLException, DocumentException {
 
         crearPDF(
                 "Productos agotados o con existencia menor o igual a 5",
@@ -142,7 +143,7 @@ public class ReportePDFServicio {
 
     public void puntosPorCliente(
             OutputStream salida
-    ) throws Exception {
+    ) throws SQLException, DocumentException {
 
         crearPDF(
                 "Puntos acumulados por cliente",
@@ -164,7 +165,7 @@ public class ReportePDFServicio {
 
     public void historialCanjes(
             OutputStream salida
-    ) throws Exception {
+    ) throws SQLException, DocumentException {
 
         crearPDF(
                 "Historial de canjes",
@@ -186,7 +187,7 @@ public class ReportePDFServicio {
 
     public void ventasMenus(
             OutputStream salida
-    ) throws Exception {
+    ) throws SQLException, DocumentException {
 
         crearPDF(
                 "Ventas de menús completos",

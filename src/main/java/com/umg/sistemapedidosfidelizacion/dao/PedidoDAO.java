@@ -248,6 +248,66 @@ public class PedidoDAO {
         return pedidos;
     }
 
+
+    public List<Pedido> listarPorCliente(int idCliente) throws SQLException {
+        List<Pedido> pedidos = new ArrayList<>();
+
+        String sql = """
+                SELECT
+                    p.id_pedido,
+                    p.fecha,
+                    p.estado,
+                    p.total,
+
+                    c.id_cliente,
+                    c.codigo,
+                    c.nombre,
+                    c.telefono,
+                    c.saldo_puntos,
+                    c.activo
+
+                FROM pedidos p
+                INNER JOIN clientes c
+                    ON p.id_cliente = c.id_cliente
+
+                WHERE p.id_cliente = ?
+                ORDER BY p.fecha DESC, p.id_pedido DESC
+                """;
+
+        try (Connection conexion = ConexionDB.getConnection();
+             PreparedStatement ps = conexion.prepareStatement(sql)) {
+
+            ps.setInt(1, idCliente);
+
+            try (ResultSet rs = ps.executeQuery()) {
+
+                while (rs.next()) {
+
+                    Cliente cliente = new Cliente(
+                            rs.getInt("id_cliente"),
+                            rs.getString("codigo"),
+                            rs.getString("nombre"),
+                            rs.getString("telefono"),
+                            rs.getInt("saldo_puntos"),
+                            rs.getBoolean("activo")
+                    );
+
+                    pedidos.add(
+                            new Pedido(
+                                    rs.getInt("id_pedido"),
+                                    cliente,
+                                    rs.getTimestamp("fecha").toLocalDateTime(),
+                                    rs.getString("estado"),
+                                    rs.getBigDecimal("total")
+                            )
+                    );
+                }
+            }
+        }
+
+        return pedidos;
+    }
+
     private List<DetallePedido> listarDetalles(int idPedido)
             throws SQLException {
 
